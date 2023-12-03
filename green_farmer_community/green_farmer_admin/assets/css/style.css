@@ -1,0 +1,668 @@
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+@font-face {
+  font-family: Siemreap_Regular;
+  src: url(Siemreap_Regular/Siemreap_Regular.ttf);
+}
+* {
+  font-family: Siemreap_Regular;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background:black;
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+  box-shadow: 2px 7px 25px rgba(0, 0, 0, 0.08);
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+  color: green;
+}
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  width: 600px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.fine_barcode{
+  padding: 0px 20px;
+  border: 0;
+  border-radius: 10px;
+  margin:0 5px;
+  background-color: green;
+  color: white;
+}
+.fine_barcode:active{
+  color: white;
+  background-color: #005aae;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 10px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+.barcode_check{
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 10px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+/* ================== Order Details List ============== */
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+
+.details .recentOrders {
+  position: relative;
+  display: flex;
+  flex-direction:column;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details .cardHeader {
+  height:100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cardHeader h2 {
+  font-weight: 600;
+  color: green;
+}
+.cardHeader .btn {
+  position: relative;
+  padding: 5px 10px;
+  background: green;
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+  border: 0;
+  transition: all .3s;
+}
+.btn:hover{
+  background-color: black;
+}
+.btn:active{
+  background-color: red;
+}
+.details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.details table thead td {
+  font-weight: 600;
+}
+.details .recentOrders table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child {
+  border-bottom: none;
+}
+
+.details .recentOrders table tr td {
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2) {
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3) {
+  text-align: center;
+}
+.status.delivered {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.pending {
+  padding: 2px 4px;
+  background: #e9b10a;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.return {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.inProgress {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.recentCustomers {
+  position: relative;
+  display: flex;
+  flex-direction:column;
+  min-height: 500px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+.recentCustomers table tr {
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08);
+  text-align:left;
+}
+.recentCustomers table tr td {
+  padding: 5px 10px;
+}
+.recentCustomers table tr td h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2rem;
+}
+.recentCustomers table tr td h4 span {
+  font-size: 14px;
+  color: var(--black2);
+}
+
+
+/* ====================== Responsive Design ========================== */
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .details {
+    grid-template-columns: 1fr;
+  }
+  .recentOrders {
+    overflow-x: auto;
+  }
+  .status.inProgress {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardHeader h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 10001;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 100;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}
+.card_check{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem 10px;
+}
+.circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 659px) {
+ .card_check {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 5px;
+   margin:auto 4rem;
+  }
+.circle{
+  margin:20px 0;
+ }
+.search form label{
+ display:grid;
+ grid-template-columns: repeat(2, 1fr);
+}
+.search input{
+  margin:10px 5px;
+}
+}
+@media (max-width: 480px) {
+ .circle{
+  margin:20px 20px;
+ }
+ .card_check {
+   gap: 3px;
+  }
+}
+.circle h5{
+  position: absolute;
+  bottom: -38px;
+  z-index: 20;
+  font-size: .8rem;
+  transition: all 1s;
+}
+.circle p{
+ font-weight: 600;
+ font-size: 1.5rem;
+}
+
+.circle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  border-radius: 50%;
+  transition: all 1s;
+}
+
+.circle.red::after {
+  border: 3px solid green;
+  transform: rotate(160deg);
+  clip-path: polygon(0% 0%, 0% 0%, 30% 100%, 0% 100%);
+}
+.circle.dia.red::after {
+  border: 3px solid red;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.circle.dia.green::after {
+  border: 3px solid red;
+  transform: rotate(160deg);
+  clip-path: polygon(0% 0%, 0% 0%, 30% 100%, 0% 100%);
+}
+
+.circle.yellow::after {
+  border: 3px solid green;
+  transform: rotate(180deg);
+  clip-path: polygon(0% 0%, 50% 0%, 50% 100%, 0% 100%);
+}
+
+.circle.green::after {
+  border: 3px solid green;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+
+/* his is style for pop up container */
+.viewAll_bch_container{
+  width: 80%;
+  padding: 20px;
+  height: 100vh;
+  top: 0;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index:100;
+}
+#viewAll_bch_container{
+  display: none;
+}
+#viewAll_bch_container_sold{
+  display: none;
+}
+.viewAll_bch_container .data_dable{
+  width: 100%;
+  box-shadow: 1px 7px 10px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  background-color: white;
+  border-radius: 30px;
+  overflow: auto;
+  padding: 20px;
+  position: relative;
+  scrollbar-width: 5px;
+  scrollbar-color: green;
+}
+/* Webkit-based browsers */
+.viewAll_bch_container .data_dable::-webkit-scrollbar {
+  width: 3px;
+}
+
+.viewAll_bch_container .data_dable::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.viewAll_bch_container .data_dable::-webkit-scrollbar-thumb {
+  background-color: green;
+  border-radius: 5px;
+}
+
+.viewAll_bch_container .data_dable::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(124, 235, 50);
+}
+.data_dable i{
+  color: red;
+  padding: 15px 5px;
+  margin-left: -25px;
+  margin-top: -35px;
+  font-size: 1.5rem;
+  position: fixed;
+  z-index: 20;
+}
+.data_dable i:hover{
+  color: rgba(128, 128, 128, 0.366);
+}
+.data_dable i:active{
+  color: red;
+}
+.data_dable .data_row{
+  padding: 10px;
+  margin: 8px 5px;
+  border-radius: 5px;
+  background-color: green;
+  color:white;
+  box-shadow: -3px -1px 10px rgba(56, 159, 227, 0.301);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  overflow-x: auto;
+}
+.viw_sell_b_ch_btn{
+  border-radius: 10px;
+  background-color: #005aae;
+  font-size: .7rem;
+  position: absolute;
+  bottom: 20px;
+}
+@media (max-width: 659px) {
+.viewAll_bch_container{
+ width:100%;
+ z-index:1000;
+}
+.data_dable .data_row{
+ width:1024px;
+}
+}
+/*----prink---------- */
+.print_btn{
+  padding:5px 20px;
+  background-color:green;
+  color:white;
+  border:0;
+  border-radius:5px;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+}
+.print-btn:hover{
+  opacity:.6; 
+}
+/*----prink paper---------- */
+.container_print_paper{
+ width:80%;
+ height:200px;
+ position:fixed;
+ background-color:red;
+ top:1rem;
+ left:50%;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ overflow-y: auto;
+}
+.a4-paper {
+    width: 210mm;
+    height: 297mm;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20mm;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    margin-bottom: 1.5em;
+}
